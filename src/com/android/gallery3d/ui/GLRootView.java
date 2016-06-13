@@ -120,7 +120,10 @@ public class GLRootView extends GLSurfaceView
         mFlags |= FLAG_INITIALIZED;
         setBackgroundDrawable(null);
         setEGLContextClientVersion(ApiHelper.HAS_GLES20_REQUIRED ? 2 : 1);
-        if (ApiHelper.USE_888_PIXEL_FORMAT) {
+        if (Build.MODEL.equals("Emulator")) {
+            setEGLConfigChooser(8, 8, 8, 8, 16, 0);
+        }
+        else if (ApiHelper.USE_888_PIXEL_FORMAT) {
             setEGLConfigChooser(8, 8, 8, 0, 0, 0);
         } else {
             setEGLConfigChooser(5, 6, 5, 0, 0, 0);
